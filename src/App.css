@@ -60,30 +60,54 @@ body {
   text-decoration: none;
 }
 
-/* Sidebar */
+/* Estilo da Sidebar */
 .sidebar {
   width: 250px;
-  background: #007bff;
-  color: white;
+  background-color: #f4f4f9;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   height: 100vh;
-  padding: 1rem;
-  position: fixed;
-  left: 0;
-  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .sidebar ul {
   list-style: none;
+  padding: 0;
 }
 
-.sidebar ul li {
-  margin: 15px 0;
+.sidebar li {
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #007bff;
+  font-size: 16px;
 }
 
-.sidebar ul li a {
+.sidebar li:hover {
+  text-decoration: underline;
+}
+
+/* Estilo do Botão de Sair */
+.logout-button {
+  background-color: #dc3545; /* Vermelho */
   color: white;
-  text-decoration: none;
-  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-start; /* Alinha à esquerda */
+}
+
+.logout-button:hover {
+  background-color: #c82333; /* Escurece o vermelho ao passar o mouse */
 }
 
 /* Home Page */
