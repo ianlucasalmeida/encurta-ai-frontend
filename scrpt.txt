@@ -1,0 +1,3 @@
+Código para rodar o front sem estresse com o node!
+
+export NODE_OPTIONS=--openssl-legacy-provider && npm start
