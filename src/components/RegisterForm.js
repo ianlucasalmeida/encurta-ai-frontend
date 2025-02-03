@@ -31,8 +31,10 @@ const RegisterForm = ({ onRegister }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/users/register', formData);
-      onRegister(response.data);
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/api/users/register`,
+        formData
+      );
     } catch (error) {
       alert(error.response?.data?.error || 'Erro ao cadastrar usuário.');
     }

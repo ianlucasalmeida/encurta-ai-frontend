@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../App.css'; // Importe o CSS global do diretório pai
+import '../App.css';
+
 
 const LoginPage = ({ onLogin }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -10,19 +11,20 @@ const LoginPage = ({ onLogin }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-
-    if (value && formData.email && formData.password) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    }
+    setFormData((prevFormData) => {
+      const updatedFormData = { ...prevFormData, [name]: value };
+      setIsButtonDisabled(!(updatedFormData.email && updatedFormData.password));
+      return updatedFormData;
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/users/login', formData);
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/api/users/login`,
+        formData
+      );
       alert(response.data.message || 'Login realizado com sucesso!');
       onLogin();
       navigate('/home');
@@ -32,35 +34,40 @@ const LoginPage = ({ onLogin }) => {
   };
 
   return (
-    <div className="card">
-      <h2>Entrar</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="E-mail"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Senha"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit" disabled={isButtonDisabled}>
-          Entrar
-        </button>
-      </form>
-      <p>
-        Não tem uma conta?{' '}
-        <a href="/register" style={{ color: 'blue' }}>
-          Criar Conta
-        </a>
-      </p>
+    <div className="login-container">
+      <div className="login-card">
+        <img src="/rede.png" alt="Logo" className="logo" />
+        <h2 className="login-title">Entrar</h2>
+        <form onSubmit={handleSubmit} className="login-form">
+          <input
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="login-input"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Senha"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="login-input"
+          />
+          <button type="submit" disabled={isButtonDisabled} className="login-button">
+            Entrar
+          </button>
+        </form>
+        <p className="login-footer">
+          Não tem uma conta?{' '}
+          <a href="/register" className="login-link">
+            Criar Conta
+          </a>
+        </p>
+      </div>
     </div>
   );
 };

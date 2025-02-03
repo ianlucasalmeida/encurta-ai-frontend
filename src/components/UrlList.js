@@ -1,11 +1,12 @@
 import React from 'react';
+import '../App.css';
 
 const UrlList = ({ urls }) => {
   return (
-    <ul>
+    <ul className="url-list">
       {urls.map((url, index) => (
         <li key={index}>
-          <a href={`http://localhost:3000/${url}`} target="_blank" rel="noopener noreferrer">
+          <a href={url} target="_blank" rel="noopener noreferrer">
             {url}
           </a>
         </li>

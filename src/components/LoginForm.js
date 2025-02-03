@@ -20,8 +20,10 @@ const LoginForm = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/users/login', formData);
-      onLogin(response.data);
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/api/users/login`,
+        formData
+      );
     } catch (error) {
       alert(error.response?.data?.error || 'Erro ao fazer login.');
     }

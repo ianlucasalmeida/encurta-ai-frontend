@@ -1,61 +1,200 @@
-/* Estilização global */
-body {
+/* Reset Global */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
 }
 
-.card {
-  width: 350px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Login e Registro */
+.login-container, .register-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.login-card, .register-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.card h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.card input {
+.login-input, .register-input {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 5px;
 }
 
-.card button {
+.login-button, .register-button {
   width: 100%;
   padding: 10px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.card button:disabled {
+.login-button:disabled, .register-button:disabled {
   background-color: #ccc;
-  cursor: not-allowed;
 }
 
-.card p {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.card a {
+.login-link, .register-link {
   color: #007bff;
   text-decoration: none;
 }
 
-.card a:hover {
-  text-decoration: underline;
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #007bff;
+  color: white;
+  height: 100vh;
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Home Page */
+.home-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 250px;
+  padding: 2rem;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+}
+
+/* Logo */
+.logo {
+  width: 150px;
+  display: block;
+  margin: 0 auto 20px;
+}
+.sidebar {
+  width: 250px;
+  background: #007bff;
+  color: white;
+  height: 100vh;
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.history-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.history-item a {
+  color: #ffeb3b;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+}
+/* Estilo do formulário */
+.shorten-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.shorten-form:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo do campo de entrada */
+.input-url {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-url:focus {
+  border-color: #007bff;
+}
+
+/* Estilo do botão */
+.btn-shorten {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-shorten:hover {
+  background-color: #0056b3;
+}
+
+.btn-shorten:active {
+  background-color: #004085;
 }

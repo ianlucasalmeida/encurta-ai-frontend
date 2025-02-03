@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../App.css'; // Importe o CSS global do diretório pai
+import '../App.css';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -14,65 +14,71 @@ const RegisterPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-
-    // Habilita o botão apenas se todos os campos forem preenchidos
-    if (formData.name && formData.email && formData.password) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    }
+    setFormData((prevFormData) => {
+      const updatedFormData = { ...prevFormData, [name]: value };
+      setIsButtonDisabled(!(updatedFormData.name && updatedFormData.email && updatedFormData.password));
+      return updatedFormData;
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/users/register', formData);
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/api/users/register`,
+        formData
+      );
       alert(response.data.message || 'Cadastro realizado com sucesso!');
-      navigate('/login'); // Redireciona para a página de login após o cadastro
+      navigate('/login');
     } catch (error) {
       alert(error.response?.data?.error || 'Erro ao cadastrar usuário.');
     }
   };
 
   return (
-    <div className="card">
-      <h2>Criar Conta</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nome"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="E-mail"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Senha"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit" disabled={isButtonDisabled}>
-          Cadastrar
-        </button>
-      </form>
-      <p>
-        Já tem uma conta?{' '}
-        <a href="/login" style={{ color: 'blue' }}>
-          Entrar
-        </a>
-      </p>
+    <div className="register-container">
+      <div className="register-card">
+        <img src="/rede.png" alt="Logo" className="logo" />
+        <h2 className="register-title">Criar Conta</h2>
+        <form onSubmit={handleSubmit} className="register-form">
+          <input
+            type="text"
+            name="name"
+            placeholder="Nome"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="register-input"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="register-input"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Senha"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="register-input"
+          />
+          <button type="submit" disabled={isButtonDisabled} className="register-button">
+            Cadastrar
+          </button>
+        </form>
+        <p className="register-footer">
+          Já tem uma conta?{' '}
+          <a href="/login" className="register-link">
+            Entrar
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
