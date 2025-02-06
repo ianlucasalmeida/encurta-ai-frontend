@@ -85,7 +85,7 @@ body {
 .sidebar li {
   margin-bottom: 10px;
   cursor: pointer;
-  color: #007bff;
+  color: #96a0ac;
   font-size: 16px;
 }
 
@@ -131,7 +131,7 @@ body {
 }
 .sidebar {
   width: 250px;
-  background: #007bff;
+  background: #b8b8b8;
   color: white;
   height: 100vh;
   padding: 1rem;
@@ -158,7 +158,7 @@ body {
 }
 
 .history-item a {
-  color: #ffeb3b;
+  color: #000000;
   text-decoration: none;
   word-wrap: break-word;
 }
